@@ -1,26 +1,8 @@
 package data
 
 import (
-	"context"
-	"log"
 	"treatMap/trick-or-treat/src/structs"
-
-	firebase "firebase.google.com/go"
-	"google.golang.org/api/option"
 )
-
-func main() {
-	sa := option.WithCredentialsFile("./credFile.json")
-	app, err := firebase.NewApp(context.Background(), nil, sa)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	client, err := app.Firestore(context.Background())
-	if err != nil {
-		log.Fatalln(err)
-	}
-	client.Close()
-}
 
 func Get_Candy() *structs.Candy {
 	//TODO: create a function to get a Candy value from Firestore
@@ -38,9 +20,9 @@ func Get_Report() *structs.Report {
 }
 
 func Set_User() {
-
+	//TODO: create a setter function to create new users in Firestore
 }
 
 func Set_Report() {
-
+	//TODO: create a setter function to create new reports in Firestore
 }
