@@ -1,28 +1,64 @@
 package data
 
 import (
+	"context"
+	"log"
 	"treatMap/trick-or-treat/src/structs"
+
+	"cloud.google.com/go/firestore"
 )
 
-func Get_Candy() *structs.Candy {
-	//TODO: create a function to get a Candy value from Firestore
-	return nil
+func Get_Candy(candyid string, client *firestore.Client) structs.Candy {
+	result, err := client.Collection("Candies").Doc("kitkat").Get(context.Background())
+	if err != nil {
+		log.Fatalln(err)
+	}
+	var res structs.Candy
+
+	if err := result.DataTo(&res); err != nil {
+		log.Fatalln(err)
+	}
+	return res
 }
 
-func Get_User() *structs.User {
-	//TODO: create a function to get a User value from Firestore
-	return nil
+func Get_User(uuid string, client *firestore.Client) structs.User {
+	result, err := client.Collection("Users").Doc(uuid).Get(context.Background())
+	if err != nil {
+		log.Fatalln(err)
+	}
+	var res structs.User
+	if err := result.DataTo(&res); err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(res)
+	return res
 }
 
-func Get_Report() *structs.Report {
-	//TODO: create a function to get a Report value from Firestore
-	return nil
+func Get_Report(id string, client *firestore.Client) structs.Report {
+	result, err := client.Collection("Users").Doc(id).Get(context.Background())
+	if err != nil {
+		log.Fatalln(err)
+	}
+	var res structs.Report
+	if err := result.DataTo(&res); err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(res)
+	return res
 }
 
-func Set_User() {
-	//TODO: create a setter function to create new users in Firestore
+func Set_User(user structs.User, client *firestore.Client) {
+	result, err := client.Collection("Users").Doc(user.UUID).Set(context.Background(), user)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(result)
 }
 
-func Set_Report() {
-	//TODO: create a setter function to create new reports in Firestore
+func Set_Report(report *structs.Report, client *firestore.Client) {
+	result, err := client.Collection("Reports").Doc(report.ID).Set(context.Background(), report)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(result)
 }

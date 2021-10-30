@@ -1,10 +1,10 @@
 package structs
 
 type Candy struct {
-	ID    int8   `json:"id"`
-	Name  string `json:"name"`
-	Value int8   `json:"value"`
-	Image string `json:"imageUrl"`
+	ID    string `firestore:"id"`
+	Name  string `firestore:"name"`
+	Value int64  `firestore:"value"`
+	Image string `firestore:"imageUrl"`
 }
 
 type User struct {
@@ -16,7 +16,7 @@ type User struct {
 }
 
 type Report struct {
-	ID     int16   `json:"id"`
+	ID     string  `json:"id"`
 	Lng    float32 `json:"lng"`
 	Lat    float32 `json:"lat"`
 	Report []int8  `json:"report"`
