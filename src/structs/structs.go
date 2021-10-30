@@ -16,8 +16,8 @@ type User struct {
 }
 
 type Report struct {
-	ID     string  `json:"id"`
-	Lng    float32 `json:"lng"`
-	Lat    float32 `json:"lat"`
-	Report []int8  `json:"report"`
+	ID       string   `json:"id"`
+	Lng      float32  `json:"lng"`
+	Lat      float32  `json:"lat"`
+	Contents []string `json:"report"`
 }
